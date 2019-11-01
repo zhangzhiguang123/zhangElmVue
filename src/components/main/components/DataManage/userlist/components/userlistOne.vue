@@ -39,17 +39,7 @@ export default {
   },
 
   async created() {
-    var { data } = await getUserCount();
-    var arr = data;
-    // window.console.log(arr);
-    this.userList = [];
-    arr.forEach(item => {
-      let userList = {};
-      userList.username = item.username;
-      userList.registe_time = item.registe_time;
-      userList.city = item.city;
-      this.userList.push(userList);
-    });
+    this.userList  = await getUserCount();
   },
   methods: {
     handleCurrentChange(cpage) {

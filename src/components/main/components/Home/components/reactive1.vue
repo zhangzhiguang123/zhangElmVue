@@ -8,20 +8,61 @@
         >当日数据：</div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple-light">新增用户</div>
+        <div class="grid-content bg-purple-light">
+          <span style="font-size:26px">
+            {{userCount}}
+            </span>
+          新增用户
+        </div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple">新增订单</div>
+        <div class="grid-content bg-purple">
+          <span>
+            {{orderCount}}
+            </span>
+          新增订单
+        </div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple-light">新增管理员</div>
+        <div class="grid-content bg-purple-light">
+          <span>
+            {{adminCount}}
+            </span>
+          新增管理员
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
+<script>
+// import axios from "axios";
+import { getUserCount, getOrderCount, getAdminCount } from "@/api/homeAxios";
 
+export default {
+  data() {
+    return {
+      userCount: "",
+      orderCount: "",
+      adminCount: ""
+    };
+  },
+  async created() {
+    this.userCount = await getUserCount();
+    this.userCount = this.userCount.count;
+
+    this.orderCount = await getOrderCount();
+    this.orderCount = this.orderCount.count;
+
+    this.adminCount = await getAdminCount();
+    this.adminCount = this.adminCount.count;  
+  }
+};
+</script>
 
 <style lang="less" scoped>
+span {
+  font-size: 26px;
+}
 .el-row {
   width: 70%;
   padding: 20px;

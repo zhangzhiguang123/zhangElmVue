@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="12" class="echarts-item">
           <el-card>
-            <div class="box">
+            <div class="box" style="padding: 10px 30px;">
               <div class="content-title">走势图</div>
               <ve-line
                 :data="lineChartData"
@@ -75,7 +75,9 @@ export default {
       }
     };
   },
-  created: function() {},
+  created: function() {
+    this.lineChartData.rows[0]["新注册用户"]=500;
+  },
   methods: {}
 };
 </script>

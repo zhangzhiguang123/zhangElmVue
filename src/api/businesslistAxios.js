@@ -9,4 +9,8 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
   });
 
+export function getbusinessList(){
+    return axios.get("shopping/restaurants?latitude=31.22967&longitude=121.4762&limit=100");
+}
+
 

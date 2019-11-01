@@ -141,7 +141,7 @@ export default {
            background: #324057;
            min-height: 1000px;
           & > ul {
-            padding-top: 20px;
+            // padding-top: 20px;
             width: 100%;
             display: flex;
             color: #bfcbd9;
@@ -150,7 +150,7 @@ export default {
             align-items: center;
             li {
               width: 100%;
-              //   height: 56px;
+                // height: 56px;
               line-height: 56px;
               font-size: 14px;
               cursor: pointer;

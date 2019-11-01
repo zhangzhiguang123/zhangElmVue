@@ -8,20 +8,58 @@
         >总数据：</div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple-light">注册用户</div>
+        <div class="grid-content bg-purple-light">
+          <span>
+            {{userlist}}
+          </span>
+          注册用户</div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple">订单</div>
+        <div class="grid-content bg-purple">
+         <span>
+           {{orderCount}}
+           </span>
+          订单</div>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple-light">管理员</div>
+        <div class="grid-content bg-purple-light">
+          <span>
+            {{adminlist}}
+            </span>
+          管理员</div>
       </el-col>
     </el-row>
   </div>
 </template>
+<script>
+import {  getAuserlist, getIndentCount,getadminlist } from "@/api/homeAxios";
+export default {
+    data() {
+    return {
+      userlist: "",
+      orderCount:"",
+      adminlist:"",
+    };
+  },
+ async created() {
+     this.userlist = await getAuserlist();
+    
+    this.userlist = this.userlist.count;
+    window.console.log(this.userCount);
+    this.orderCount = await getIndentCount();
+    this.orderCount = this.orderCount.count;
+
+    this.adminlist = await getadminlist();
+    this.adminlist = this.adminlist.count;  
+  }
+};
+</script>
 
 
 <style lang="less" scoped>
+span{
+  font-size: 26px;
+}
 .el-row {
   width: 70%;
   padding: 0 0 0 20px;

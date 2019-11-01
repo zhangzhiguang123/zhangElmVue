@@ -16,12 +16,7 @@
 <script>
 import router from "../../router/index";
 export default {
-    data(){
-        return{
-           secondNav:"",
-           thirdNav:""
-        }
-    },
+    props:["secondNav","thirdNav"],
     router,
 };
 </script>

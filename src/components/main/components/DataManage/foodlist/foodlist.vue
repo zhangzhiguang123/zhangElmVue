@@ -37,8 +37,8 @@
 </template>
 <script>
 import { getFoodlist } from "@/api/foodlist.js";
-import foodlistTedit from "./foodlisTedit";
-import foodlist2 from "./foodlist2";
+import foodlistTedit from "./components/foodlisTedit";
+import foodlist2 from "./components/foodlist2";
 import top from "../../../../../common/components/top-bar";
 
 export default {
@@ -53,10 +53,8 @@ export default {
     };
   },
   async created() {
-    var { data } = await getFoodlist();
-    data.forEach(itme => {
-      this.arr.push(itme);
-    });
+   this.arr = await getFoodlist();
+   
   },
   components: {
     foodlist2,

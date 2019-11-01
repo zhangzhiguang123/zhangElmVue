@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import admins from "./admins";
-import adminsison from "./adminsison"
+import admins from "./components/admins";
+import adminsison from "./components/adminsison"
 import top from "../../../../../common/components/top-bar";
 
 export default {

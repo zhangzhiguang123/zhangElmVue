@@ -1,6 +1,6 @@
 <template>
   <div>
-    
+    <top :secondNav="nav1" :thirdNav="nav2"></top>
     <div>
          <!-- 管理员信息 -->
          <adminsison></adminsison>
@@ -8,7 +8,6 @@
     <div>
         <!-- 管理员总数量 -->
        <admins></admins>
-        
     </div>
   </div>
 </template>
@@ -16,16 +15,20 @@
 <script>
 import admins from "./admins";
 import adminsison from "./adminsison"
+import top from "../../../../../common/components/top-bar";
 
 export default {
   data() {
     return {
-      obj: []
+      obj: [],
+       nav1: "数据管理",
+      nav2: "/ 管理员列表"
     };
   },
  components: {
     admins,
     adminsison,
+    top
  
   }
 }

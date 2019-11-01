@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-import { getOrderList } from "@/api/orderlist";
+import { getOrderList } from "@/api/axios";
 import orderlistTwo from "./orderlistTwo";
 export default {
   data() {

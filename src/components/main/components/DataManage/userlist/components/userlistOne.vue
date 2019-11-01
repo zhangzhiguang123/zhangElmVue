@@ -27,7 +27,7 @@
   </div>
 </template>
 <script>
-import { getUserCount } from "@/api/userlist";
+import { getUserCounts } from "@/api/axios";
 export default {
   data() {
     return {
@@ -39,7 +39,7 @@ export default {
   },
 
   async created() {
-    this.userList  = await getUserCount();
+    this.userList  = await getUserCounts();
   },
   methods: {
     handleCurrentChange(cpage) {

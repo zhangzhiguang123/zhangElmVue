@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-import { getFoodlist } from "@/api/foodlist.js";
+import { getFoodlist } from "@/api/axios";
 import foodlistTedit from "./components/foodlisTedit";
 import foodlist2 from "./components/foodlist2";
 import top from "../../../../../common/components/top-bar";

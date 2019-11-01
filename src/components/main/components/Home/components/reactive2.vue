@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-import {  getAuserlist, getIndentCount,getadminlist } from "@/api/homeAxios";
+import {  getAuserlist, getIndentCount,getadminlist } from "@/api/axios";
 export default {
     data() {
     return {

@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import { getAdminTotal } from "@/api/addmins.js";
+import { getAdminTotal } from "@/api/axios";
 export default {
   data() {
     return {

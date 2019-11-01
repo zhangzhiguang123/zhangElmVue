@@ -67,7 +67,7 @@
 
 <script>
 import Topbar from "../../../../../common/components/top-bar.vue";
-import { getbusinessList } from "@/api/businesslistAxios";
+import { getbusinessList } from "@/api/axios";
 export default {
   data() {
     return {

@@ -80,4 +80,8 @@ let routes = [
 
 let router = new VueRouter({routes});
 
+// router.beforeEach(function(to,from){
+//     window.console.log(to,from);
+// });
+
 export default router;

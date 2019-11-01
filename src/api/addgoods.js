@@ -8,9 +8,9 @@ axios.interceptors.response.use(function (response) {
 })
 
 export function getfood() {
-    return axios.get("shopping/v2/foods")
+    return axios.get("shopping/v2/foods");
 }
 
 export function getFoodList() {
-    return axios.get("shopping/getcategory/:restaurant_id")
+    return axios.get("shopping/getcategory/:restaurant_id");
 }

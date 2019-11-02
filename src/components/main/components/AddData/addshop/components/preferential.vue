@@ -1,6 +1,6 @@
 <template >
 <div>
-   <Modal ref="mymodal"></Modal>
+   <Modal ref="mymodal" @fun="getSon"></Modal>
    
   <div class="box">
       <span>优惠活动</span>
@@ -19,20 +19,30 @@
 </template>
 <script>
 import Modal from "./Modal.vue"
+import  bus from "@/assets/bus.js"
 export default {
   components:{
-    Modal
+    Modal,
   },
  methods:{
      openModal(){
          this.$refs.mymodal.isShow()
           this.$refs.mymodal.open()
-         
-     }
+          // window.console.log(this.value)
+          // this.$emit("val",this.value);
+           bus.$emit("val",this.value)
+     },
+     getSon(data){
+         this.msg=data;
+          // window.console.log(data)
+          bus.$emit("send",this.msg)
+          // window.console.log(this.msg)
+     },
+    
  },
   data() {
     return {
-       
+       msg:"",
       options: [
         {
           value: "选项1",

@@ -26,7 +26,7 @@ export default {
     this.$set(this.echarts1_option.series[0].data[2],"value",a.user_city.shenzhen)
     this.$set(this.echarts1_option.series[0].data[3],"value",a.user_city.hangzhou)
     this.$set(this.echarts1_option.series[0].data[4],"value",a.user_city.qita)
-
+   
     this.myChart.setOption(this.echarts1_option);
   },
   

@@ -4,6 +4,8 @@
     </div>
 </template>
 <script>
+import  bus from "@/assets/bus.js"
+
 export default {
     data(){
         return{
@@ -26,7 +28,10 @@ export default {
             type: 'success',
             message: '创建成功',
           });
-            window.console.log(value)
+          this.$emit("fun",value);
+          bus.$emit("addTable")
+
+        // window.console.log(value)
            
         }).catch(() => {
           this.$message({

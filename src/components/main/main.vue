@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <el-row>
-      <el-col :span="4">
+      <el-col :span="4" ref="theLeft">
         <div class="grid-content bg-purple-dark">
           <div class="boxleft">
             <ul>
@@ -83,9 +83,9 @@
           </div>
         </div>
       </el-col>
-      <el-col :span="20">
+      <el-col :span="20" ref="theRight">
         <div class="grid-content bg-purple-dark">
-          <div class="boxright">
+          <div class="boxright" ref="boxright">
             <router-view></router-view>
           </div>
         </div>
@@ -125,21 +125,29 @@ export default {
     showThis5() {
       this.showFlag5 = !this.showFlag5;
     }
+  },
+  mounted() {
+      this.$refs.theLeft.height = document.body.clientHeight + "px";
   }
 };
 </script>
 <style lang="less" scoped>
+.box {
+  width: 100%;
+  height: 100%;
+}
 .el-row {
   width: 100%;
   height: 100%;
   .el-col {
     height: 100%;
     &:first-child {
+      position: fixed;
+      left: 0;
       .bg-purple-dark {
-        height: 100%;
         .boxleft {
-           background: #324057;
-           min-height: 1000px;
+          background: #324057;
+          min-height: 1000px;
           & > ul {
             // padding-top: 20px;
             width: 100%;
@@ -150,7 +158,7 @@ export default {
             align-items: center;
             li {
               width: 100%;
-                // height: 56px;
+              // height: 56px;
               line-height: 56px;
               font-size: 14px;
               cursor: pointer;
@@ -206,6 +214,8 @@ export default {
       }
     }
     &:last-child {
+      position: absolute;
+      right: 0;
       .bg-purple-dark {
         background: #fff;
         height: 100%;

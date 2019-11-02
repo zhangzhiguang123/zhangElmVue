@@ -1,75 +1,98 @@
 <template>
-  <div id="app">
-    <el-table
-      :data="arr.slice((currpage - 1) * pagesize, currpage * pagesize)"
-      style="width: 100%"
-      @selection-change="handleSelectionChange"
-    >
-      <!-- 嵌套二级 -->
+  <div>
+    <top :secondNav="nav1" :thirdNav="nav2"></top>
+    <div id="app">
+      <el-table
+        :data="arr.slice((currpage - 1) * pagesize, currpage * pagesize)"
+        style="width: 100%"
+        @selection-change="handleSelectionChange"
+      >
+        <!-- 嵌套二级 -->
+        <foodlist2></foodlist2>
+        <el-table-column type="index" widht="100px" label="排序"></el-table-column>
+        <el-table-column label></el-table-column>
+        <el-table-column property="name" label="介绍"></el-table-column>
+        <el-table-column property="rating" label="评价"></el-table-column>
+        <!-- 删除和编辑 -->
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index)">编辑</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
 
-      <foodlist2></foodlist2>
-
-      <el-table-column type="index" widht="100px" label="排序"></el-table-column>
-      <el-table-column label></el-table-column>
-      <el-table-column property="name" label="介绍"></el-table-column>
-      <el-table-column property="rating" label="评价"></el-table-column>
-      <!-- 删除和编辑 -->
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.$index)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-
-    <el-pagination
-      background
-      layout="prev, pager, next, sizes, total, jumper"
-      :page-sizes="[5, 10, 15, 20]"
-      :total="arr.length"
-      @current-change="handleCurrentChange"
-      @size-change="handleSizeChange"
-    ></el-pagination>
-        <!-- 第一层子组件 -->
-        <foodlistTedit ref="s"></foodlistTedit>
-         
-     
+      <el-pagination
+        background
+        layout="prev, pager, next, sizes, total, jumper"
+        :page-sizes="[5, 10, 15, 20]"
+        :total="arr.length"
+        @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
+      ></el-pagination>
+      <!-- 第一层子组件 -->
+      <foodlistTedit ref="s"></foodlistTedit>
+    </div>
   </div>
 </template>
 <script>
-import { getFoodlist } from "@/api/foodlist.js";
-import foodlistTedit from "./foodlisTedit";
-import foodlist2 from "./foodlist2";
+import { getFoodlist, deleteFood } from "@/api/axios";
+
+import foodlistTedit from "./components/foodlisTedit";
+import foodlist2 from "./components/foodlist2";
+import top from "../../../../../common/components/top-bar";
+
 export default {
   data() {
     return {
       arr: [],
       pagesize: 20,
       currpage: 1,
+      nav1: "数据管理",
+      nav2: "/ 食品列表"
       // isShow:true
     };
   },
   async created() {
-    var { data } = await getFoodlist();
-    data.forEach(itme => {
-      this.arr.push(itme);
-    });
+    this.arr = await getFoodlist();
   },
   components: {
     foodlist2,
-    foodlistTedit
+    foodlistTedit,
+    top
   },
   methods: {
     handleEdit(index) {
-        this.$refs.s.show();
+      this.$refs.s.show();
       window.console.log(index);
     },
-    handleDelete(index) {
-      // 删除
-      this.arr.splice(index, 1);
 
-      window.console.log(index);
+    async handleDelete(index, row) {
+      try {
+        let res = await deleteFood(row.item_id);
+        if (res.status == 1) {
+          this.$message({
+            type: "success",
+            message: "删除食品成功"
+          });
+          this.arr.splice(index, 1);
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (err) {
+        this.$message({
+          type: "error",
+          message: "删除失败!",
+        });
+        
+      }
     },
+    // handleDelete(index) {
+    //   // 删除
+    //   this.arr.splice(index, 1);
+
+    //   window.console.log(index);
+    // },
     handleCurrentChange(cpage) {
       this.currpage = cpage;
     },
@@ -105,7 +128,7 @@ export default {
   margin-bottom: 0;
   width: 50%;
 }
-   .isi {
+.isi {
   height: 400px;
   width: 400px;
   background: red;
@@ -117,6 +140,6 @@ export default {
   margin: auto;
 }
 .isi2 {
-  
+  width: 0;
 }
 </style>

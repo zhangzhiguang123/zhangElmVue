@@ -151,7 +151,7 @@ font-size: 14px;
 }
 </style>
 <script>
-import { getFoodlist } from "@/api/addgoods";
+import { getFoodlist } from "@/api/axios";
 import ofoodtype from "./foodtype";
 export default {
   components: {

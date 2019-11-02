@@ -6,7 +6,7 @@
 </template>
 <script>
 import echarts from "echarts";
-import { getUserDistribution } from "@/api/ChartAxios.js";
+import { getUserDistribution } from "@/api/axios";
 export default {
   //先要导入依赖的实例
 

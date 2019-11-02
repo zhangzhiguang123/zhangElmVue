@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { getAdminIin } from "@/api/adminsison.js";
+import { getAdminIin } from "@/api/axios";
 export default {
   data() {
     return {
@@ -33,17 +33,8 @@ export default {
     };
   },
   async created() {
-    var { data } = await getAdminIin();
-    var arr = data.data;
-    arr.forEach(itme => {
-      var { user_name, create_time, city, admin } = itme;
-      this.obj.push({
-        user_name,
-        create_time,
-        city,
-        admin
-      });
-    });
+   this.obj = await getAdminIin();
+   this.obj = this.obj.data;
   },
   methods: {
     handleCurrentChange(cpage) {

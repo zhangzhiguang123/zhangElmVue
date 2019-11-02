@@ -29,7 +29,7 @@
   </div>
 </template>
 <script>
-import { getOrderList } from "@/api/orderlist";
+import { getOrderList } from "@/api/axios";
 import orderlistTwo from "./orderlistTwo";
 export default {
   data() {
@@ -44,21 +44,9 @@ export default {
     orderlistTwo
   },
   async created() {
-    var { data } = await getOrderList();
-    // var arr = data;
-    // window.console.log(arr);
-    // this.orderlist = [];
-    data.forEach(itme => {
-      // let orderlist = {};
-      // orderlist.id = itme.id;
-      // orderlist.time_pass = itme.time_pass;
-      // orderlist.restaurant_name = itme.restaurant_name;
-      // orderlist._id = itme._id;
-      // orderlist.total_quantity = itme.total_quantity;
-      // orderlist.total_amount = itme.total_amount;
-      // orderlist.title = itme.status_bar.title;
-      this.orderlist.push(itme);
-    });
+   this.orderlist = await getOrderList();
+ 
+   
   },
 
   methods: {

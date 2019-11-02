@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import {getfood} from "@/api/addgoods"
+import {getfood} from "@/api/axios"
 export default {
      async created() {
     this.tableData = await getfood();

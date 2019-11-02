@@ -36,7 +36,7 @@
 </template>
 <script>
 // import axios from "axios";
-import { getUserCount, getOrderCount, getAdminCount } from "@/api/homeAxios";
+import { getUserCount, getOrderCount, getAdminCount } from "@/api/axios";
 
 export default {
   data() {

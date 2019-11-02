@@ -61,7 +61,7 @@
                   </el-form-item>
                   <el-form-item label="店铺分类">
                     <div class="block">
-                      <el-cascader v-model="value" :options="options" @change="handleChange"></el-cascader>
+                      <el-cascader v-model="value" :options="options"></el-cascader>
                     </div>
                   </el-form-item>
                   <el-form-item label="店铺图片">
@@ -80,11 +80,11 @@
                 <!-- from end -->
                 <div slot="footer" class="dialog-footer">
                   <el-button @click="showEditmodalbox = false">取 消</el-button>
-                  <el-button type="primary" @click="showEditmodalbox = false">确 定</el-button>
+                  <el-button type="primary" @click="submitShowEditmodalbox(scope.row)">确 定</el-button>
                 </div>
               </el-dialog>
               <router-link to="/addgoods" tag="el-button">添加商品</router-link>
-              <el-button plain type="danger">删除</el-button>
+              <el-button plain type="danger" @click="deleteTheRestaurant(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -94,7 +94,6 @@
           @current-change="handleCurrentChange"
           :page-sizes="[10,20,30,40]"
           :page-size="page.pageSize"
-          :pager-count="8"
           layout="total, sizes, prev, pager, next"
           :total="page.totalRecords"
         ></el-pagination>
@@ -105,7 +104,7 @@
 
 <script>
 import Topbar from "../../../../../common/components/top-bar.vue";
-import { getbusinessList } from "@/api/axios";
+import { getbusinessList,goUpdateTheRestaurant,goDeletTheRestaurant} from "@/api/axios";
 // import Editmodalbox from "./components/Editmodalbox.vue";
 export default {
   data() {
@@ -220,14 +219,33 @@ export default {
       }
       return isJPG && isLt2M;
     },
-    getshowEditmodalbox(row){
+    getshowEditmodalbox(row){  //修改信息框获得相应信息
         window.console.log(row);
         this.showEditmodalbox = true;
         this.modalData.name = row.name;
         this.modalData.address = row.address;
-        this.modalData.description = row.description;
-        this.modalData.phone = row.phone;
-        this.modalData.image_path = row.image_path;
+        this.modalData.description = row.description; //介绍
+        this.modalData.phone = row.phone;//电话
+        this.modalData.image_path = row.image_path;//图片
+        this.modalData.category = this.value; //分类
+    },
+    async submitShowEditmodalbox(row){  //修改
+        this.modalData.id = row.id;
+        let getInfo = await goUpdateTheRestaurant(this.modalData);
+        if(getInfo.status===1){
+          this.$message('修改信息成功');
+        }else{
+          this.$message('修改信息失败，请检查权限及数据完整性！');
+        }
+    },
+    async deleteTheRestaurant(row){
+       let getInfo = await goDeletTheRestaurant(row.id);
+        window.console.log(getInfo);       
+       if(getInfo.status===1){
+          this.$message('删除成功');
+        }else{
+          this.$message('删除失败，请检查权限及数据完整性！');
+        }
     }
   }
 };

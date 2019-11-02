@@ -25,6 +25,7 @@ export default {
   },
   mounted(){
      document.body.style.background = "#324057";
+     document.querySelector(".el-scrollbar__view").style.height=document.body.clientHeight+"px";
   },
   beforeDestroy(){
     document.body.style.background = "#fff";

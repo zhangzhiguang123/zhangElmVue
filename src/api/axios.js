@@ -64,3 +64,12 @@ export function getOrderList() {
 export function getUserCounts() {
   return axios.get('v1/users/list?offset=0&limit=1000')
 }
+//食品分类列表
+export function getClassification(){
+  return axios.get('v2/index_entry')
+}
+
+//删除食品
+export function deleteFood(){
+  return axios.get('statis/admin/2017-05-30/count')
+}

@@ -36,7 +36,8 @@
   </div>
 </template>
 <script>
-import { getFoodlist } from "@/api/axios";
+import { getFoodlist, deleteFood } from "@/api/axios";
+
 import foodlistTedit from "./components/foodlisTedit";
 import foodlist2 from "./components/foodlist2";
 import top from "../../../../../common/components/top-bar";
@@ -47,14 +48,13 @@ export default {
       arr: [],
       pagesize: 20,
       currpage: 1,
-       nav1: "数据管理",
+      nav1: "数据管理",
       nav2: "/ 食品列表"
       // isShow:true
     };
   },
   async created() {
-   this.arr = await getFoodlist();
-   
+    this.arr = await getFoodlist();
   },
   components: {
     foodlist2,
@@ -66,12 +66,33 @@ export default {
       this.$refs.s.show();
       window.console.log(index);
     },
-    handleDelete(index) {
-      // 删除
-      this.arr.splice(index, 1);
 
-      window.console.log(index);
+    async handleDelete(index, row) {
+      try {
+        let res = await deleteFood(row.item_id);
+        if (res.status == 1) {
+          this.$message({
+            type: "success",
+            message: "删除食品成功"
+          });
+          this.arr.splice(index, 1);
+        } else {
+          throw new Error(res.message);
+        }
+      } catch (err) {
+        this.$message({
+          type: "error",
+          message: "删除失败!",
+        });
+        
+      }
     },
+    // handleDelete(index) {
+    //   // 删除
+    //   this.arr.splice(index, 1);
+
+    //   window.console.log(index);
+    // },
     handleCurrentChange(cpage) {
       this.currpage = cpage;
     },
@@ -119,5 +140,6 @@ export default {
   margin: auto;
 }
 .isi2 {
+  width: 0;
 }
 </style>

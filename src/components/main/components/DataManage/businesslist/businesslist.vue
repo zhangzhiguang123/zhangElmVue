@@ -114,7 +114,15 @@ export default {
       showEditmodalbox: false,
       currpage: 1,
       shoplist: [],
-      modalData:{},//弹出框数据
+      modalData:{
+        id:"",
+        name:"",
+        address:"",
+        phone:"",
+        description:"",
+        image_path:"",
+        category:""
+      },//弹出框数据
       page: {
         pageSize: 10, //每页条数,  默认10条
         totalRecords: 0, //总条数

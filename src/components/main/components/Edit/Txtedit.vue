@@ -1,5 +1,6 @@
 <template>
   <div id="wangeditor">
+    <top :secondNav="nav1" :thirdNav="nav2"></top>
     <topbar></topbar>
     <div ref="editorElem" style="text-align:left;" id="Txtedit"></div>
     <submit></submit>
@@ -8,17 +9,19 @@
 <script>
 import E from "wangeditor";
 import submit from "./components/submit.vue";
-import topbar from "../../../../common/components/top-bar.vue";
+import top from "../../../../common/components/top-bar.vue";
 export default {
   components: {
     submit,
-    topbar
+    top
   },
   name: "Editor",
   data() {
     return {
       editor: null,
-      editorContent: ""
+      editorContent: "",
+      nav1: "编辑",
+      nav2: "/ 文本编辑"
     };
   },
   // catchData是一个类似回调函数，来自父组件，当然也可以自己写一个函数，主要是用来获取富文本编辑器中的html内容用来传递给服务端
@@ -60,10 +63,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-#Txtedit{
-   width: 90%;
+#Txtedit {
+  width: 90%;
   margin: 0 auto;
   margin-top: 50px;
-  
 }
 </style>

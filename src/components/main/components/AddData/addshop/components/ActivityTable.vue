@@ -19,11 +19,12 @@
       </el-table>
     </div>
     <div class="bun">
-      <el-button plain @click="open4" style="background:#20a0ff;color:#fff;">立即创建</el-button>
+      <el-button plain @click="open4" style="background:#20a0ff;color:#fff;" >立即创建</el-button>
     </div>
   </div>
 </template>
 <script>
+import  bus from "@/assets/bus.js"
 export default {
   methods: {
     deleteRow(index, rows) {
@@ -37,14 +38,25 @@ export default {
     },
     addtable() {
       let obj = {};
-      obj.title = "减";
-      obj.name = "";
-      obj.details = "";
+      obj.title = this.title;
+      obj.name = this.name;
+      obj.details = this.getmsg;
       this.tableData.push(obj);
+    },
+     btn:function(){
+      bus.$on("send",(val)=> {
+     this.getmsg = val;
+      // window.console.log(this.getmsg)
+    });
     }
   },
   data() {
     return {
+      getmsg: "",
+      value:"",
+      title:"",
+      name:"",
+
       tableData: [
         {
           title: "减",
@@ -53,6 +65,33 @@ export default {
         }
       ]
     };
+  },
+  created() {
+   this.btn();
+   bus.$on("addTable",()=>{
+     this.addtable();
+    //  window.console.log(67);
+
+   });
+  },
+  mounted(){
+    bus.$on("val",(data)=>{
+        this.value=data;
+        // window.console.log(this.value)
+        if(this.value=="选项1"){
+          this.title="减";
+          this.name="满减优惠"
+        }else if(this.value=="选项2"){
+          this.title="特";
+          this.name="优惠大酬宾";
+        }else if(this.value=="选项3"){
+          this.title="新";
+          this.name="新用户立减";
+        }else if(this.value=="选项4"){
+          this.title="领";
+          this.name="进店领劵";
+        }
+    })
   }
 };
 </script>
@@ -78,7 +117,7 @@ export default {
   border: 1px solid #dfe6ec;
 }
 .bun {
-  margin-top: 22%;
+  margin-top: 25%;
   margin-left: 50%;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="box">
-        <topbar></topbar>
+    <top :secondNav="nav1" :thirdNav="nav2"></top>       
         <shop></shop>
         <bnt></bnt>
         <tim></tim>
@@ -20,10 +20,10 @@ import upload2 from "./components/upload2.vue"
 import upload3 from "./components/upload3.vue"
 import preferential from "./components/preferential.vue"
 import ActivityTable from "./components/ActivityTable.vue"
-import topbar from "../../../../../common/components/top-bar.vue";
+import top from "../../../../../common/components/top-bar.vue";
 export default {
       components: {
-        topbar,
+        top,
         shop,
         bnt,
         tim,
@@ -32,7 +32,13 @@ export default {
         upload3,
         preferential,
         ActivityTable
-  }
+  },
+    data() {
+    return {
+      nav1: "添加数据",
+      nav2: "/ 添加商铺"
+    };
+  },
 }
 </script>
 <style lang="less" scoped>

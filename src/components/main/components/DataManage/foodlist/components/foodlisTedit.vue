@@ -18,7 +18,7 @@
           <label for>食品分类</label>
           <el-select v-model="value" placeholder="请选择">
             <el-option
-              v-fo r="item in options"
+              v-for="item in options"
               :key="item.value"
               :label="item.title"
               :value="item.id"

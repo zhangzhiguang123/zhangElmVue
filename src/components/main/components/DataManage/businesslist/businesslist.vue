@@ -228,7 +228,9 @@ export default {
         this.modalData.description = row.description;
         this.modalData.phone = row.phone;
         this.modalData.image_path = row.image_path;
-    }
+    },
+
+
   }
 };
 </script>

@@ -73,3 +73,5 @@ export function getClassification(){
 export function deleteFood(){
   return axios.get('statis/admin/2017-05-30/count')
 }
+
+

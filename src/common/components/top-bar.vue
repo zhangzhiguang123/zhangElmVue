@@ -2,8 +2,8 @@
   <div class="box">
     首页
     <span>/</span>
-    <span>{{secondNav}}</span>
-    <span>{{thirdNav}}</span>
+    <span class="one">{{secondNav}}</span>
+    <span class="one">{{thirdNav}}</span>
     <div class="pic">
       <img src="../images/default.jpg" alt />
       <div class="dispeare">
@@ -16,8 +16,8 @@
 <script>
 import router from "../../router/index";
 export default {
-    props:["secondNav","thirdNav"],
-    router,
+  props: ["secondNav", "thirdNav"],
+  router
 };
 </script>
 <style lang="less" scoped>
@@ -33,6 +33,11 @@ export default {
   span {
     margin: 0 8px;
     color: #bfcbd9;
+  }
+  span.one {
+    &:hover {
+      color: #20a0ff;
+    }
   }
   .pic {
     width: 73px;
@@ -52,7 +57,7 @@ export default {
       position: absolute;
       right: 5px;
       top: 58px;
-      overflow: hidden; 
+      overflow: hidden;
       transition: all 0.4s ease;
       z-index: 99;
       //   display: none;

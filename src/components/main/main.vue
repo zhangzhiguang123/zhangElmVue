@@ -127,12 +127,12 @@ export default {
     }
   },
   mounted() {
-    this.$refs.boxleft.style.minHeight = document.body.clientHeight + "px";
+      this.$refs.theLeft.height = document.body.clientHeight + "px";
   }
 };
 </script>
 <style lang="less" scoped>
-.box{
+.box {
   width: 100%;
   height: 100%;
 }

@@ -75,3 +75,16 @@ export function deleteFood(){
 }
 
 
+//更新餐馆
+
+export function goUpdateTheRestaurant(data){
+      let url = "shopping/updateshop";
+      return axios.post(url,data);
+}
+
+//删除餐馆
+
+export function goDeletTheRestaurant(id){
+  let url = "shopping/restaurant/:"+id;
+  return axios.get(url);
+}

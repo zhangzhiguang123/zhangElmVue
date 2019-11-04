@@ -5,12 +5,12 @@
     <reactive1></reactive1>
     <reactive2></reactive2>
     <div id="box">
-      <span class="s1"></span>
+      <!-- <span class="s1"></span>
       <span class="s2"></span>
-      <span class="s3"></span>
+      <span class="s3"></span> -->
       <span class="s4" @click="change"></span>
       <span class="s5" @click="changes"></span>
-      <span class="s6"></span>
+      <span class="s6"  @click="changes"></span>
     </div>
     <trend v-show="show"></trend>
     <ochart v-show="isshow"></ochart>

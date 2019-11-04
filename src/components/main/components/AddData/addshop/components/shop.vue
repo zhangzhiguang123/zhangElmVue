@@ -197,6 +197,9 @@ input {
   padding: 3px 10px;
   box-sizing: border-box;
 }
+input:hover{
+  color: #000;
+}
 .input {
   margin-bottom: 20px;
 }
@@ -208,5 +211,6 @@ p {
 .dianpu {
   padding-left: 2.5%;
 }
+
 </style>
 

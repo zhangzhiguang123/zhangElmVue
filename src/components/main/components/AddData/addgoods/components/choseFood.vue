@@ -96,6 +96,9 @@ font-size: 14px;
       float: left;
       margin-left: 120px;
       margin-top: 20px;
+       &:hover {
+      background: rgb(95, 178, 241);
+    }
     }
     input {
       width: 455px;

@@ -1,8 +1,9 @@
 <template>
   <div>
     <top :secondNav="nav1" :thirdNav="nav2"></top>
-    <topbar></topbar>
-    <user></user>
+    <div class="hie"></div>
+    <div style="margin-left:240px;">
+    <user></user></div>
   </div>
 </template>
 <script>
@@ -18,12 +19,13 @@ export default {
       nav1: "设置",
       nav2: "/ 管理员设置"
     };
-  },
-
+  }
 };
 </script>
 <style lang="less" scoped>
-
+.hie{
+  height: 70px;
+}
 </style>
 
 

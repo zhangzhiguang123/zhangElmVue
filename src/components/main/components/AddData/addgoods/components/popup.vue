@@ -68,7 +68,7 @@ button {
     width: 32px;
     height: 32px;
     display: block;
-    background: pink;
+    background:url(../img/err.png);
     position: absolute;
     right: 25px;
   }

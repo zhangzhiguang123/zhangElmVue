@@ -10,7 +10,7 @@
           @click="getvalue(index,item)"
           v-for="(item,index) in tableData"
           :key="item.index"
-        >{{item}}</li>
+        >{{item.name}}</li>
       </ul>
     </div>
   </div>
